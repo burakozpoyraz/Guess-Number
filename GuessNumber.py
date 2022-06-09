@@ -1,4 +1,5 @@
 # PACKAGES----------------------------------------------------------------
+from IPython.display import display
 from datetime import datetime as dt
 from termcolor import colored
 from time import time
