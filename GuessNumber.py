@@ -328,13 +328,13 @@ def DisplayDataFrame(df, num_game_log):
 # ------------------------------------------------------------------------
 
 
-# TITLE------------------------------------------------------------------------
+# TITLE-------------------------------------------------------------------
 print(emoji.emojize(":star: :1234: ", language="alias"), end="")
 print(colored(" WELCOME TO GUESS NUMBER GAME ", "red", attrs=["bold", "reverse"]), end="")
 print(emoji.emojize(" :1234: :star:\n", language="alias"))
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-# DESCRIPTION------------------------------------------------------------------
+# DESCRIPTION-------------------------------------------------------------
 print(emoji.emojize(":information_source: ", language="alias"), end="")
 print(colored("GAME DESCRIPTION:", "yellow", attrs=["bold", "reverse"]), end="")
 print(colored(" In this game, you will try to guess the correct number \
@@ -343,9 +343,9 @@ according to the difficulty level you choose, where you can also set a custom \
 range and limit. During the game, you will be informed about your guess if it is \
 smaller or greater than the correct number. Have fun ", "yellow", attrs=["reverse"]), end="")
 print(colored(emoji.emojize(":blush: \n", language="alias"), "yellow", attrs=["reverse"]))
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-# GAME-------------------------------------------------------------------------
+# GAME--------------------------------------------------------------------
 while True:
     print(colored(" 1 - New Game:", "blue", attrs=["bold", "reverse"]) + " Starts a new game")
     print(colored(" 2 - Game Log:", "blue", attrs=["bold", "reverse"]) + " Lists all games played so far")
@@ -538,4 +538,4 @@ just enter 'exit'.\n", "yellow", attrs=["reverse"]))
               "Mischief Managed " +
               emoji.emojize(":crystal_ball: ", language="alias"))
         break
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
