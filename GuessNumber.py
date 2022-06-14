@@ -1,8 +1,10 @@
 # PACKAGES----------------------------------------------------------------
-from IPython.display import display
 from datetime import datetime as dt
+from IPython.display import display
 from termcolor import colored
 from time import time
+
+import dataframe_image as dfi
 import pandas as pd
 import numpy as np
 import os.path
@@ -238,94 +240,6 @@ def UpdateGameLog(difficulty, num_range, guess_limit, result):
     game_log_df = pd.DataFrame(game_log_updated, columns=["Date","Time","Difficulty","Number Range","Guess Limit","Result"])
     game_log_df.to_excel("GuessNumberGameLog.xlsx")
 # ========================================================================
-
-
-# ========================================================================
-# 11) CSS Style of Game Log Table's Difficulty Column
-#
-# ARGUMENT
-# - df: Pandas data frame that stores the game log history (Data Type: pandas.core.frame.DataFrame)
-# ========================================================================
-def DifficultyBackgroundColor(df): 
-    if df == "Custom":
-        return "text-align: center; background-color: #B27DCE; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-    elif df == "Child's Play (1/5)":
-        return "text-align: center; background-color: #68B961; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-    elif df == "Easy (2/5)":
-        return "text-align: center; background-color: #71B4B1; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-    elif df == "Medium (3/5)":
-        return "text-align: center; background-color: #D3D1B3; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-    elif df == "Hard (4/5)":
-        return "text-align: center; background-color: #DD985F; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-    else:
-        return "text-align: center; background-color: #99534E; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-# ========================================================================
-
-
-# ========================================================================
-# 12) CSS Style of Game Log Table's Result Column
-#
-# ARGUMENT
-# - df: Pandas data frame that stores the game log history (Data Type: pandas.core.frame.DataFrame)
-# ========================================================================
-def ResultBackgroundColor(df):
-    if df == "Win":
-        return "text-align: center; background-color: green; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-    elif df == "Loss":
-        return "text-align: center; background-color: red; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-# ========================================================================
-
-
-# ========================================================================
-# 13) CSS Style of Game Log Table's Rows with Even Index
-#
-# ARGUMENT
-# - df: Pandas data frame that stores the game log history (Data Type: pandas.core.frame.DataFrame)
-# ========================================================================
-def EvenBackgroundColor(df):
-    return "text-align: center; background-color: #DAEAF1; color: #323232; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-# ========================================================================
-
-
-# ========================================================================
-# 14) CSS Style of Game Log Table's Rows with Odd Index
-#
-# ARGUMENT
-# - df: Pandas data frame that stores the game log history (Data Type: pandas.core.frame.DataFrame)
-# ========================================================================
-def OddBackgroundColor(df):
-    return "text-align: center; background-color: #C6DCE4; color: #323232; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-# ========================================================================
-
-
-# ========================================================================
-# 15) CSS Style of Game Log Table's Rows with Even Index
-#
-# ARGUMENT
-# - df: Pandas data frame that stores the game log history (Data Type: pandas.core.frame.DataFrame)
-# ========================================================================
-def TitleBackgroundColor(df):
-    return "text-align: center; background-color: #323232; color: white; font-family: Avanta Garde; font-size: 15px; font-weight: bold"
-# ========================================================================
-
-
-# ========================================================================
-# 16) Display Game Log
-#
-# ARGUMENT
-# 1-) df: Pandas data frame that stores the game log history (Data Type: pandas.core.frame.DataFrame)
-# 2-) num_game_log: Number of total games in the database (Data Type: int)
-# ========================================================================
-def DisplayDataFrame(df, num_game_log):
-    return df.style.applymap(DifficultyBackgroundColor, subset="Difficulty")\
-                   .applymap(ResultBackgroundColor, subset="Result")\
-                   .applymap(EvenBackgroundColor,
-                             subset=(slice(0, num_game_log, 2), ["Date","Time","Number Range","Guess Limit"]))\
-                   .applymap(OddBackgroundColor,
-                             subset=(slice(1, num_game_log, 2), ["Date","Time","Number Range","Guess Limit"]))\
-                   .applymap_index(TitleBackgroundColor)\
-                   .applymap_index(TitleBackgroundColor, axis="columns")
-# ========================================================================
 # ------------------------------------------------------------------------
 
 
@@ -513,7 +427,7 @@ just enter 'exit'.\n", "yellow", attrs=["reverse"]))
             game_log_np = ReadGameLog()
             num_game_log = game_log_np.shape[0]
             game_log_df = pd.DataFrame(game_log_np, columns = ["Date","Time","Difficulty","Number Range","Guess Limit","Result"])
-            display(DisplayDataFrame(game_log_df, num_game_log))
+            display(game_log_df)
         else:
             print(colored(" There is no game log " +
                       emoji.emojize(":pensive: ", language="alias"), "red", attrs=["reverse"])) 
